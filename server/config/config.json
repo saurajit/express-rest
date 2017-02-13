@@ -1,0 +1,10 @@
+{
+  "db" : {
+    "dialect": "mysql",
+    "user": "saurajit",
+    "password": "saurajit",
+    "host": "",
+    "port": "",
+    "database": "test"
+  }
+}
