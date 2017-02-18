@@ -12,6 +12,8 @@ app.use(bodyParser.json());
 
 var port = process.env.PORT || 8080;        // set our port
 
+require('./server/config/db');
+
 // ROUTES FOR OUR API
 // =============================================================================
 var router = express.Router();              // get an instance of the express Router

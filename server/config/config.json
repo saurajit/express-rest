@@ -1,8 +1,8 @@
 {
   "db" : {
     "dialect": "mysql",
-    "user": "saurajit",
-    "password": "saurajit",
+    "user": "root",
+    "password": "",
     "host": "",
     "port": "",
     "database": "test"
