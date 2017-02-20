@@ -1,8 +1,8 @@
 // server.js
 
 // call the packages we need
-var express    = require('express');        // call express
-var app        = express();                 // define our app using express
+var express = require('express'); // call express
+var app = express(); // define our app using express
 var bodyParser = require('body-parser');
 
 // configure app to use bodyParser()
@@ -10,15 +10,15 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var port = process.env.PORT || 8080;        // set our port
+var port = process.env.PORT || 8080; // set our port
 
 require('./server/config/db');
 
 // ROUTES FOR OUR API
 // =============================================================================
-var router = express.Router();              // get an instance of the express Router
+var router = express.Router(); // get an instance of the express Router
 
-require('./server/routes/items')(router);
+require('./server/routes/users')(router);
 
 // more routes for our API will happen here
 

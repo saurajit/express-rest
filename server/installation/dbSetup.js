@@ -10,11 +10,12 @@ var uri = db.dialect + '://' + db.user + ':' + db.password + '@' + db.host + ':'
 var sequelize = new Sequelize(uri);
 
 var User = sequelize.import('../models/user');
-sequelize.import('../models/item');
+sequelize.import('../models/user');
 
 sequelize.sync({ force: true }).then(function() {
     // Table created
     return User.create({
+            loginId: 'admin',
             firstName: 'admin',
             lastName: 'admin',
             password: "Hello World"

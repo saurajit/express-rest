@@ -1,15 +1,15 @@
 var routes = function(routes) {
-    var itemController = require('../controllers/itemController');
+    var userController = require('../controllers/userController');
 
     // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
     routes.get('/', function(req, res) {
         res.json({ message: 'hooray! welcome to our api!' });
     });
 
-    routes.route('/items/:itemId')
+    routes.route('/users/:userId')
 
     .get(function(req, res) {
-        itemController.retrieveItem(req.params.itemId)
+        userController.retrieveUser(req.params.userId)
             .then(function(response) {
                 res.json({ result: response, uri: req.route.path });
             })
@@ -19,7 +19,7 @@ var routes = function(routes) {
     })
 
     .delete(function(req, res) {
-        itemController.deleteItem(req.params.itemId)
+        userController.deleteUser(req.params.userId)
             .then(function(response) {
                 res.json({ result: response, uri: req.route.path });
             })
@@ -29,7 +29,7 @@ var routes = function(routes) {
     })
 
     .put(function(req, res) {
-        itemController.updateItem(req.params.itemId, req.body)
+        userController.updateUser(req.params.userId, req.body)
             .then(function(response) {
                 res.json({ result: response, uri: req.route.path });
             })
@@ -38,8 +38,8 @@ var routes = function(routes) {
             });
     });
 
-    routes.post('/items', function(req, res) {
-        itemController.createItem(req.body)
+    routes.post('/users', function(req, res) {
+        userController.createUser(req.body)
             .then(function(response) {
                 res.json({ result: response, uri: req.route.path });
             })
