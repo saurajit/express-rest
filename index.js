@@ -19,6 +19,7 @@ require('./server/config/db');
 var router = express.Router(); // get an instance of the express Router
 
 require('./server/routes/users')(router);
+require('./server/routes/items')(router);
 
 // more routes for our API will happen here
 

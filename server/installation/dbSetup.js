@@ -11,6 +11,7 @@ var sequelize = new Sequelize(uri);
 
 var User = sequelize.import('../models/user');
 sequelize.import('../models/user');
+sequelize.import('../models/item');
 
 sequelize.sync({ force: true }).then(function() {
     // Table created

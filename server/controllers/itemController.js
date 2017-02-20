@@ -1,12 +1,13 @@
 var sequelize = require('../config/db');
 var Promise = require('Sequelize').Promise;
-var User = sequelize.import('../models/user');
+var Item = sequelize.import('../models/item');
 var Controller = {
-    createItem: function(user) {
+    createItem: function(item) {
         return new Promise(function(resolve, reject) {
-            User.create(user)
-                .then(function(user) {
-                    resolve(user.get());
+            item.userId = 1;
+            Item.create(item)
+                .then(function(item) {
+                    resolve(item.get());
                 })
                 .catch(function(error) {
                     console.error("%j", error);
@@ -16,7 +17,7 @@ var Controller = {
     },
     retrieveItem: function(itemId) {
         return new Promise(function(resolve, reject) {
-            User.findOne({ where: { userId: itemId }, attributes: ['firstName', ['lastName', 'last_name']] })
+            Item.findOne({ where: { itemId: itemId } })
                 .then(function(response) {
                     resolve(response);
                 })
@@ -25,9 +26,10 @@ var Controller = {
                 });
         });
     },
-    updateItem: function(itemId, user) {
+    updateItem: function(itemId, item) {
         return new Promise(function(resolve, reject) {
-            User.update(user, { where: { userId: itemId } })
+            item.userId = 1;
+            Item.update(item, { where: { itemId: itemId } })
                 .then(function(updateCountList) {
                     resolve(updateCountList[0] + " record(s) updated successfully");
                 })
@@ -38,7 +40,7 @@ var Controller = {
     },
     deleteItem: function(itemId) {
         return new Promise(function(resolve, reject) {
-            User.destroy({ where: { userId: itemId } })
+            Item.destroy({ where: { itemId: itemId } })
                 .then(function(deleteCount) {
                     resolve(deleteCount + " record(s) deleted successfully");
                 })
