@@ -27,6 +27,15 @@ require('./server/routes/items')(router);
 // all of our routes will be prefixed with /api
 app.use('/api', router);
 
+// If no route is matched by now, it must be a 404
+app.use(function(req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    res.json({ error: 'Invalid request' })
+        .end();
+    next(err);
+});
+
 // START THE SERVER
 // =============================================================================
 app.listen(port);
