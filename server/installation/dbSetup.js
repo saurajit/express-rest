@@ -12,6 +12,7 @@ var sequelize = new Sequelize(uri);
 var User = sequelize.import('../models/user');
 sequelize.import('../models/user');
 sequelize.import('../models/item');
+sequelize.import('../models/sessions');
 
 sequelize.sync({ force: true }).then(function() {
     // Table created
@@ -23,5 +24,8 @@ sequelize.sync({ force: true }).then(function() {
         })
         .then(function(user) {
             console.log(user.getDataValue('password'));
+        })
+        .catch(function(error) {
+            console.log(error);
         });
 });
