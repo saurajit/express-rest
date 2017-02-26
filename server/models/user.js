@@ -21,6 +21,11 @@ module.exports = function(sequelize, Datatype) {
                 unique: true,
                 fields: ['loginId']
             }
-        ]
+        ],
+        instanceMethods: {
+            getUserId: function() {
+                return this.userId;
+            }
+        }
     });
 };

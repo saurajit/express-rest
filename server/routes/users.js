@@ -1,5 +1,5 @@
 var routes = function(routes) {
-    var userController = require('../controllers/userController');
+    var userController = require('../controllers/userController')();
 
     // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
     routes.get('/', function(req, res) {
