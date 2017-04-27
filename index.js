@@ -1,6 +1,7 @@
 // server.js
 
 // call the packages we need
+var path = require('path');
 var express = require('express'); // call express
 var app = express(); // define our app using express
 var bodyParser = require('body-parser');
@@ -51,13 +52,18 @@ require('./server/routes/items')(router);
 // all of our routes will be prefixed with /api
 app.use('/api', router);
 
+app.use(express.static(path.join(__dirname, '/public')));
 // If no route is matched by now, it must be a 404
 app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    res.json({ error: 'Invalid request' })
-        .end();
-    next(err);
+    if (req.url === '/favicon.ico') {
+        res.end();
+    } else {
+        var err = new Error('Not Found');
+        err.status = 404;
+        res.json({ error: 'Invalid request' })
+            .end();
+        next(err);
+    }
 });
 
 // START THE SERVER
