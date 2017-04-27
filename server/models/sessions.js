@@ -3,16 +3,24 @@ module.exports = function(sequelize, Datatype) {
         sessionId: {
             type: Datatype.UUID,
             defaultValue: Datatype.UUIDV1,
-            primaryKey: true
+            primaryKey: true,
+            allowNull: false
         },
         userId: {
             type: Datatype.INTEGER,
             references: {
                 model: sequelize.model('user'),
                 key: 'userId'
-            }
+            },
+            allowNull: false
+        },
+        loggedIn: {
+            type: Datatype.DATE,
+            defaultValue: Datatype.NOW(),
+            allowNull: false
         }
     }, {
+        createdAt: false,
         freezeTableName: true,
         updatedAt: false
     });

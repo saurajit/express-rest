@@ -18,6 +18,30 @@ require('./server/config/db');
 // =============================================================================
 var router = express.Router(); // get an instance of the express Router
 
+require('./server/routes/authentication')(router);
+
+// route middleware to verify a token
+router.use(function(req, res, next) {
+
+    // check header or url parameters or post parameters for token
+    var token = req.body.token || req.query.token || req.headers['X-Auth-Token'];
+
+    // decode token
+    if (token) {
+        res.status(200).send({
+            error: 'Token provided.'
+        });
+        next();
+    } else {
+
+        // if there is no token
+        // return an error
+        return res.status(403).send({
+            error: 'No token provided.'
+        });
+    }
+});
+
 require('./server/routes/users')(router);
 require('./server/routes/items')(router);
 

@@ -18,9 +18,8 @@ sequelize.sync({ force: true }).then(function() {
     // Table created
     return User.create({
             loginId: 'admin',
-            firstName: 'admin',
-            lastName: 'admin',
-            password: "Hello World"
+            firstName: 'Administrator',
+            password: "admin"
         })
         .then(function(user) {
             console.log(user.getDataValue('password'));
